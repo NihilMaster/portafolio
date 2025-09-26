@@ -150,8 +150,12 @@ h1 {
 }
 
 .tech-icon {
-    font-size: 1.5rem;
-    color: var(--accent);
+    display: inline-block;
+    width: 16px;        /* tamaño fijo igual que tus iconos */
+    height: 16px;
+    vertical-align: middle;
+    color: var(--accent); /* el svg usará este color si el path tiene fill="currentColor" */
+    transform: translateY(-6.5px);
 }
 
 /* Footer */
