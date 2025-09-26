@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Portafolio de Proyectos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Mi Portafolio de Proyectos</h1>
+        <p class="subtitle">Una colección de mis trabajos más relevantes en GitHub</p>
+        
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">Todos</button>
+            <button class="filter-btn" data-filter="web">Web</button>
+            <button class="filter-btn" data-filter="mobile">Mobile</button>
+            <button class="filter-btn" data-filter="data">Data Science</button>
+            <button class="filter-btn" data-filter="tools">Herramientas</button>
+        </div>
+    </header>
+    
+    <main>
+        <div class="projects-grid">
+            <!-- Proyecto 1 -->
+            <div class="project-card" data-category="web">
+                <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80')"></div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3 class="project-title">E-commerce React</h3>
+                        <p class="project-description">Una aplicación de comercio electrónico completa construida con React, Node.js y MongoDB.</p>
+                    </div>
+                    <div class="technologies">
+                        <i class="fab fa-react tech-icon" title="React"></i>
+                        <i class="fab fa-node-js tech-icon" title="Node.js"></i>
+                        <i class="fas fa-database tech-icon" title="MongoDB"></i>
+                        <i class="fab fa-js-square tech-icon" title="JavaScript"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Proyecto 2 -->
+            <div class="project-card" data-category="mobile">
+                <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80')"></div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3 class="project-title">App de Tareas Móvil</h3>
+                        <p class="project-description">Aplicación móvil para gestión de tareas desarrollada con React Native y Firebase.</p>
+                    </div>
+                    <div class="technologies">
+                        <i class="fab fa-react tech-icon" title="React Native"></i>
+                        <i class="fab fa-google tech-icon" title="Firebase"></i>
+                        <i class="fab fa-js-square tech-icon" title="JavaScript"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Proyecto 3 -->
+            <div class="project-card" data-category="data">
+                <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80')"></div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3 class="project-title">Análisis de Datos Financieros</h3>
+                        <p class="project-description">Scripts de Python para análisis predictivo de tendencias del mercado financiero.</p>
+                    </div>
+                    <div class="technologies">
+                        <i class="fab fa-python tech-icon" title="Python"></i>
+                        <i class="fas fa-chart-line tech-icon" title="Análisis de Datos"></i>
+                        <i class="fab fa-aws tech-icon" title="AWS"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Proyecto 4 -->
+            <div class="project-card" data-category="web">
+                <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1115&q=80')"></div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3 class="project-title">Dashboard Analytics</h3>
+                        <p class="project-description">Panel de control interactivo para visualización de métricas empresariales.</p>
+                    </div>
+                    <div class="technologies">
+                        <i class="fab fa-vuejs tech-icon" title="Vue.js"></i>
+                        <i class="fab fa-js-square tech-icon" title="JavaScript"></i>
+                        <i class="fas fa-chart-bar tech-icon" title="Chart.js"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Proyecto 5 -->
+            <div class="project-card" data-category="tools">
+                <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1174&q=80')"></div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3 class="project-title">CLI Tool</h3>
+                        <p class="project-description">Herramienta de línea de comandos para automatización de tareas de desarrollo.</p>
+                    </div>
+                    <div class="technologies">
+                        <i class="fab fa-node-js tech-icon" title="Node.js"></i>
+                        <i class="fab fa-npm tech-icon" title="NPM"></i>
+                        <i class="fas fa-terminal tech-icon" title="CLI"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Proyecto 6 -->
+            <div class="project-card" data-category="mobile">
+                <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1512486130939-2c4f79935e4f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1160&q=80')"></div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3 class="project-title">App de Fitness</h3>
+                        <p class="project-description">Aplicación móvil para seguimiento de rutinas de ejercicio y nutrición.</p>
+                    </div>
+                    <div class="technologies">
+                        <i class="fab fa-swift tech-icon" title="Swift"></i>
+                        <i class="fab fa-apple tech-icon" title="iOS"></i>
+                        <i class="fas fa-heartbeat tech-icon" title="HealthKit"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <p>© 2023 Mi Portafolio. Todos los derechos reservados.</p>
+        <div class="social-links">
+            <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+        </div>
+    </footer>
+    
+    <script>
+        // Filtrado de proyectos
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remover clase activa de todos los botones
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Agregar clase activa al botón clickeado
+                    this.classList.add('active');
+                    
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    // Filtrar proyectos
+                    projectCards.forEach(card => {
+                        if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
