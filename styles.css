@@ -49,6 +49,132 @@ h1 {
     margin-bottom: 1.5rem;
 }
 
+/* Navbar Styles */
+.navbar {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+}
+
+.nav-logo a {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: var(--accent);
+    transition: var(--transition);
+}
+
+.nav-logo a:hover {
+    color: var(--dark);
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    margin: 0;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--primary);
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.nav-link:hover {
+    background: var(--light);
+    color: var(--accent);
+}
+
+.nav-link.active {
+    background: var(--accent);
+    color: white;
+}
+
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background: var(--primary);
+    margin: 3px 0;
+    transition: var(--transition);
+}
+
+/* Secciones */
+.section {
+    display: none;
+    padding: 2rem 0;
+    animation: fadeIn 0.5s ease-in;
+}
+
+.section.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Estilos para las secciones de Certificados y Experiencia */
+.certificates-grid,
+.experience-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.certificate-card,
+.experience-card {
+    background: var(--card-bg);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    text-align: center;
+}
+
+.certificate-card:hover,
+.experience-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+/* Placeholders para certificados y experiencia */
+.certificate-placeholder,
+.experience-placeholder {
+    text-align: center;
+    padding: 2rem;
+    color: var(--secondary);
+}
+
 /* Filtros */
 .filters {
     display: flex;
@@ -185,6 +311,52 @@ footer {
     transform: translateY(-3px);
 }
 
+/* Responsive Navbar */
+@media (max-width: 768px) {
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 70px;
+        flex-direction: column;
+        background: var(--card-bg);
+        width: 100%;
+        text-align: center;
+        transition: var(--transition);
+        box-shadow: var(--shadow);
+        padding: 2rem 0;
+        gap: 0;
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .nav-item {
+        margin: 0.5rem 0;
+    }
+
+    .nav-link {
+        padding: 1rem;
+        justify-content: center;
+    }
+
+    .nav-toggle {
+        display: flex;
+    }
+
+    .nav-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .nav-toggle.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .nav-toggle.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .projects-grid {
@@ -194,4 +366,36 @@ footer {
     h1 {
         font-size: 2rem;
     }
+    
+    .navbar {
+        margin-bottom: 1rem;
+    }
+    
+    .nav-container {
+        padding: 0 0.5rem;
+    }
+    
+    .nav-link {
+        padding: 0.8rem;
+        font-size: 0.9rem;
+    }
+    
+    header {
+        margin-bottom: 2rem;
+    }
+    
+    h1 {
+        font-size: 2rem;
+        margin-top: 1rem;
+    }
+}
+
+/* Asegurar que el body tenga padding-top para el navbar sticky */
+body {
+    padding-top: 0;
+}
+
+/* Ajuste para los filtros en el header */
+header .filters {
+    margin-top: 1.5rem;
 }

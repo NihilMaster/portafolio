@@ -8,11 +8,46 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="#inicio">Mi Portafolio</a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#proyectos" class="nav-link active" data-section="proyectos">
+                        <i class="fas fa-code"></i>
+                        Proyectos
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#certificados" class="nav-link" data-section="certificados">
+                        <i class="fas fa-certificate"></i>
+                        Certificados
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#experiencia" class="nav-link" data-section="experiencia">
+                        <i class="fas fa-briefcase"></i>
+                        Experiencia
+                    </a>
+                </li>
+            </ul>
+            <div class="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <header id="inicio">
         <h1>Mi Portafolio de Proyectos</h1>
         <p class="subtitle">Una colección de mis trabajos más relevantes en GitHub</p>
         
-        <div class="filters">
+        <!-- Filtros (solo se muestran en la sección de proyectos) -->
+        <div class="filters" id="proyectos-filters">
             <button class="filter-btn active" data-filter="all">Todos</button>
             <button class="filter-btn" data-filter="java">Java</button>
             <button class="filter-btn" data-filter="javascript">JavaScript</button>
@@ -23,303 +58,334 @@
     </header>
     
     <main>
-        <div class="projects-grid">
+        <!-- Sección Proyectos -->
+        <section id="proyectos" class="section active">
+            <div class="projects-grid">
 
-            <!-- Proyecto 1 -->
-            <div class="project-card" data-category="html">
-                <div class="card-bg" style="background-image: url('src/banner/gemini.png')"></div>
-                <div class="card-content">
-                    <div class="card-header">
-                        <h3 class="project-title">chatAI-iOs9</h3>
-                        <p class="project-description">Aplicación de chat con inteligencia artificial.</p>
+                <!-- Proyecto 1 -->
+                <div class="project-card" data-category="html">
+                    <div class="card-bg" style="background-image: url('src/banner/gemini.png')"></div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h3 class="project-title">chatAI-iOs9</h3>
+                            <p class="project-description">Aplicación de chat con inteligencia artificial.</p>
+                        </div>
+                        <div class="technologies">
+                            <i class="fab fa-html5 tech-icon" title="HTML5"></i>
+                            <i class="fab fa-js-square tech-icon" title="JS - ES5"></i>
+                            <i class="fab fa-github tech-icon" title="GitHub Pages"></i>
+                            <i class="tech-icon" data-icon="render" title="render.com"></i>
+                        </div>
                     </div>
-                    <div class="technologies">
-                        <i class="fab fa-html5 tech-icon" title="HTML5"></i>
-                        <i class="fab fa-js-square tech-icon" title="JS - ES5"></i>
-                        <i class="fab fa-github tech-icon" title="GitHub Pages"></i>
-                        <i class="tech-icon" data-icon="render" title="render.com"></i>
+                </div>
+                
+                <!-- Proyecto 2 -->
+                <div class="project-card" data-category="javascript extension">
+                    <div class="card-bg" style="background-image: url('src/banner/chomelo_mintic.png')"></div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h3 class="project-title">MeloBotExtension</h3>
+                            <p class="project-description">Extensión de navegador que analiza en tiempo real el contenido de campos de texto usando IA para detectar lenguaje ofensivo y promover una comunicación digital más respetuosa.</p>
+                        </div>
+                        <div class="technologies">
+                            <i class="fab fa-js-square tech-icon" title="JavaScript"></i>
+                            <i class="fab fa-chrome tech-icon" title="Chrome Extension"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Proyecto 3 -->
+                <div class="project-card" data-category="javascript">
+                    <div class="card-bg" style="background-image: url('src/banner/telegram.png')"></div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h3 class="project-title">notifier-telegram-bot</h3>
+                            <p class="project-description">Bot de Telegram para notificaciones automáticas.</p>
+                        </div>
+                        <div class="technologies">
+                            <i class="fab fa-js-square tech-icon" title="JavaScript"></i>
+                            <i class="fab fa-telegram tech-icon" title="Telegram"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Proyecto 4 -->
+                <div class="project-card" data-category="javascript extension">
+                    <div class="card-bg" style="background-image: url('src/banner/tree.png')"></div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h3 class="project-title">TreeMakerExtension</h3>
+                            <p class="project-description">Extensión para crear árboles de directorios y estructuras de archivos.</p>
+                        </div>
+                        <div class="technologies">
+                            <i class="fab fa-js-square tech-icon" title="JavaScript"></i>
+                            <i class="fab fa-chrome tech-icon" title="Chrome Extension"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Proyecto 5 -->
+                <div class="project-card" data-category="java">
+                    <div class="card-bg" style="background-image: url('src/banner/springboot.png')"></div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h3 class="project-title">SpringBoot_AdvancedMicroservice</h3>
+                            <p class="project-description">Microservicio reactivo en SpringBoot utilizando arquitectura hexagonal (+SpringSecurity +SpringTesting).</p>
+                        </div>
+                        <div class="technologies">
+                            <i class="fab fa-java tech-icon" title="Java"></i>
+                            <span class="tech-icon" data-icon="springboot" title="SpringBoot"></span>
+                            <span class="tech-icon" data-icon="springsecurity" title="SpringSecurity"></span>
+                            <span class="tech-icon" data-icon="mysql" title="MySQL"></span>
+                            <span class="tech-icon" data-icon="postgresql" title="PostgreSQL"></span>
+                            <span class="tech-icon" data-icon="mongodb" title="MongoDB"></span>
+                            <span class="tech-icon" data-icon="hexagonal" title="Arquitectura hexagonal"></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Proyecto 6 -->
+                <div class="project-card" data-category="java android">
+                    <div class="card-bg" style="background-image: url('src/banner/android.png')"></div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h3 class="project-title">GeneralAndroidApp</h3>
+                            <p class="project-description">App con muchas características aleatorias de Android para explorar diferentes funcionalidades.</p>
+                        </div>
+                        <div class="technologies">
+                            <i class="fab fa-java tech-icon" title="Java"></i>
+                            <i class="fab fa-android tech-icon" title="Android"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Proyecto 7 -->
+                <!-- div class="project-card" data-category="java">
+                    <div class="card-bg" style="background-image: url('src/banner/springboot.png')"></div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h3 class="project-title">SpringBoot_HEX-Tasks <span class="private-badge">Privado</span></h3>
+                            <p class="project-description">Ejercicio básico en SpringBoot aplicando arquitectura hexagonal.</p>
+                        </div>
+                        <div class="technologies">
+                            <i class="fab fa-java tech-icon" title="Java"></i>
+                            <span class="tech-icon" data-icon="springboot" title="SpringBoot"></span>
+                            <span class="tech-icon" data-icon="mysql" title="MySQL"></span>
+                            <span class="tech-icon" data-icon="hexagonal" title="Arquitectura hexagonal"></span>
+                        </div>
+                    </div>
+                </div -->
+                
+                <!-- Proyecto 8 -->
+                <div class="project-card" data-category="java">
+                    <div class="card-bg" style="background-image: url('src/banner/springboot.png')"></div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h3 class="project-title">SpringBoot_MTO_MTM_OTM</h3>
+                            <p class="project-description">Ejercicio eventos (Fiestas, personas y habilidades), en relaciones ManyToOne, OneToMany y ManyToMany.</p>
+                        </div>
+                        <div class="technologies">
+                            <i class="fab fa-java tech-icon" title="Java"></i>
+                            <span class="tech-icon" data-icon="springboot"></span>
+                            <span class="tech-icon" data-icon="mysql"></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Proyecto 9 -->
+                <div class="project-card" data-category="java">
+                    <div class="card-bg" style="background-image: url('src/banner/springboot.png')"></div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h3 class="project-title">SpringBoot_OTO</h3>
+                            <p class="project-description">Ejercicio gimnasio (Instructores y Detalles), en relación unidireccional OneToOne.</p>
+                        </div>
+                        <div class="technologies">
+                            <i class="fab fa-java tech-icon" title="Java"></i>
+                            <span class="tech-icon" data-icon="springboot"></span>
+                            <span class="tech-icon" data-icon="mysql"></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Proyecto 10 -->
+                <div class="project-card" data-category="java">
+                    <div class="card-bg" style="background-image: url('src/banner/springboot.png')"></div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h3 class="project-title">SpringBoot_MTO</h3>
+                            <p class="project-description">Ejercicio librería (Publicaciones y comentarios), en relación unidireccional ManyToOne.</p>
+                        </div>
+                        <div class="technologies">
+                            <i class="fab fa-java tech-icon" title="Java"></i>
+                            <span class="tech-icon" data-icon="springboot"></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Proyecto 11 -->
+                <div class="project-card" data-category="java">
+                    <div class="card-bg" style="background-image: url('src/banner/springboot.png')"></div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h3 class="project-title">SpringBoot_MTO_OTM</h3>
+                            <p class="project-description">Ejercicio librería (Librerías y Libros), en relación bidireccional ManyToOne y OneToMany.</p>
+                        </div>
+                        <div class="technologies">
+                            <i class="fab fa-java tech-icon" title="Java"></i>
+                            <span class="tech-icon" data-icon="springboot"></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Proyecto 12 -->
+                <!-- div class="project-card" data-category="java">
+                    <div class="card-bg" style="background-image: url('src/banner/springboot.png')"></div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h3 class="project-title">SpringSecurity_Basics <span class="private-badge">Privado</span></h3>
+                            <p class="project-description">Ejercicio básico de SpringSecurity.</p>
+                        </div>
+                        <div class="technologies">
+                            <i class="fab fa-java tech-icon" title="Java"></i>
+                            <span class="tech-icon" data-icon="springsecurity"></span>
+                        </div>
+                    </div>
+                </div -->
+            
+                <!-- Proyecto 13 -->
+                <div class="project-card" data-category="java">
+                    <div class="card-bg" style="background-image: url('src/banner/springboot.png')"></div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h3 class="project-title">SpringBoot_BasicMicroservice</h3>
+                            <p class="project-description">Ejercicio básico de microservicios en SpringBoot.</p>
+                        </div>
+                        <div class="technologies">
+                            <i class="fab fa-java tech-icon" title="Java"></i>
+                            <span class="tech-icon" data-icon="springboot"></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Proyecto 14 -->
+                <div class="project-card" data-category="java">
+                    <div class="card-bg" style="background-image: url('src/banner/springboot.png')"></div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h3 class="project-title">SpringBoot_ReactiveREST</h3>
+                            <p class="project-description">Ejercicio REST con Spring WebFlux y MongoDB (Functional Endpoints - Unit Test).</p>
+                        </div>
+                        <div class="technologies">
+                            <i class="fab fa-java tech-icon" title="Java"></i>
+                            <span class="tech-icon" data-icon="springboot"></span>
+                            <span class="tech-icon" data-icon="mongodb"></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Proyecto 15 -->
+                <!-- div class="project-card" data-category="java">
+                    <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1074&q=80')"></div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h3 class="project-title">SpringBoot_BasicsRestReactive <span class="private-badge">Privado</span></h3>
+                            <p class="project-description">Ejercicios REST básico en Spring WebFlux. Diferenciación entre REST con Anotaciones y Functional Endpoints.</p>
+                        </div>
+                        <div class="technologies">
+                            <i class="fab fa-java tech-icon" title="Java"></i>
+                            <span class="tech-icon" data-icon="springboot"></span>
+                        </div>
+                    </div>
+                </div -->
+                
+                <!-- Proyecto 16 -->
+                <!-- div class="project-card" data-category="java">
+                    <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1074&q=80')"></div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h3 class="project-title">SpringBoot_ReactiveBasics <span class="private-badge">Privado</span></h3>
+                            <p class="project-description">Ejercicios básicos en SpringBoot con SpringReactiveWeb.</p>
+                        </div>
+                        <div class="technologies">
+                            <i class="fab fa-java tech-icon" title="Java"></i>
+                            <span class="tech-icon" data-icon="springboot"></span>
+                        </div>
+                    </div>
+                </div -->
+                
+                <!-- Proyecto 17 -->
+                <!-- div class="project-card" data-category="javascript">
+                    <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1074&q=80')"></div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h3 class="project-title">projects-ideas-JS <span class="private-badge">Privado</span></h3>
+                            <p class="project-description">Repositorio de ideas y proyectos para desarrollar en JavaScript.</p>
+                        </div>
+                        <div class="technologies">
+                            <i class="fab fa-js-square tech-icon" title="JavaScript"></i>
+                        </div>
+                    </div>
+                </div -->
+                
+                <!-- Proyecto 18 -->
+                <!-- div class="project-card" data-category="html">
+                    <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1074&q=80')"></div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h3 class="project-title">primer_extension <span class="private-badge">Privado</span></h3>
+                            <p class="project-description">Mi primera extensión de navegador desarrollada como proyecto de aprendizaje.</p>
+                        </div>
+                        <div class="technologies">
+                            <i class="fab fa-html5 tech-icon" title="HTML"></i>
+                            <i class="fab fa-chrome tech-icon" title="Chrome Extension"></i>
+                        </div>
+                    </div>
+                </div -->
+                
+                <!-- Proyecto 19 -->
+                <!-- div class="project-card" data-category="java">
+                    <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1074&q=80')"></div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h3 class="project-title">projects-ideas-JAVA <span class="private-badge">Privado</span></h3>
+                            <p class="project-description">Repositorio de ideas y proyectos para desarrollar en Java.</p>
+                        </div>
+                        <div class="technologies">
+                            <i class="fab fa-java tech-icon" title="Java"></i>
+                        </div>
+                    </div>
+                </div -->
+            </div>
+        </section>
+
+        <!-- Sección Certificados -->
+        <section id="certificados" class="section">
+            <div class="certificates-grid">
+                <div class="certificate-card">
+                    <h3>Certificados en Desarrollo</h3>
+                    <p>Próximamente agregaré mis certificados aquí.</p>
+                    <div class="certificate-placeholder">
+                        <i class="fas fa-certificate fa-3x" style="color: var(--accent); margin: 1rem 0;"></i>
+                        <p>Esta sección estará disponible pronto</p>
                     </div>
                 </div>
             </div>
-            
-            <!-- Proyecto 2 -->
-            <div class="project-card" data-category="javascript extension">
-                <div class="card-bg" style="background-image: url('src/banner/chomelo_mintic.png')"></div>
-                <div class="card-content">
-                    <div class="card-header">
-                        <h3 class="project-title">MeloBotExtension</h3>
-                        <p class="project-description">Extensión de navegador que analiza en tiempo real el contenido de campos de texto usando IA para detectar lenguaje ofensivo y promover una comunicación digital más respetuosa.</p>
-                    </div>
-                    <div class="technologies">
-                        <i class="fab fa-js-square tech-icon" title="JavaScript"></i>
-                        <i class="fab fa-chrome tech-icon" title="Chrome Extension"></i>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Proyecto 3 -->
-            <div class="project-card" data-category="javascript">
-                <div class="card-bg" style="background-image: url('src/banner/telegram.png')"></div>
-                <div class="card-content">
-                    <div class="card-header">
-                        <h3 class="project-title">notifier-telegram-bot</h3>
-                        <p class="project-description">Bot de Telegram para notificaciones automáticas.</p>
-                    </div>
-                    <div class="technologies">
-                        <i class="fab fa-js-square tech-icon" title="JavaScript"></i>
-                        <i class="fab fa-telegram tech-icon" title="Telegram"></i>
+        </section>
+
+        <!-- Sección Experiencia -->
+        <section id="experiencia" class="section">
+            <div class="experience-grid">
+                <div class="experience-card">
+                    <h3>Mi Experiencia Profesional</h3>
+                    <p>Próximamente compartiré mi experiencia laboral y profesional.</p>
+                    <div class="experience-placeholder">
+                        <i class="fas fa-briefcase fa-3x" style="color: var(--accent); margin: 1rem 0;"></i>
+                        <p>Esta sección estará disponible pronto</p>
                     </div>
                 </div>
             </div>
-            
-            <!-- Proyecto 4 -->
-            <div class="project-card" data-category="javascript extension">
-                <div class="card-bg" style="background-image: url('src/banner/tree.png')"></div>
-                <div class="card-content">
-                    <div class="card-header">
-                        <h3 class="project-title">TreeMakerExtension</h3>
-                        <p class="project-description">Extensión para crear árboles de directorios y estructuras de archivos.</p>
-                    </div>
-                    <div class="technologies">
-                        <i class="fab fa-js-square tech-icon" title="JavaScript"></i>
-                        <i class="fab fa-chrome tech-icon" title="Chrome Extension"></i>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Proyecto 5 -->
-            <div class="project-card" data-category="java">
-                <div class="card-bg" style="background-image: url('src/banner/springboot.png')"></div>
-                <div class="card-content">
-                    <div class="card-header">
-                        <h3 class="project-title">SpringBoot_AdvancedMicroservice</h3>
-                        <p class="project-description">Microservicio reactivo en SpringBoot utilizando arquitectura hexagonal (+SpringSecurity +SpringTesting).</p>
-                    </div>
-                    <div class="technologies">
-                        <i class="fab fa-java tech-icon" title="Java"></i>
-                        <span class="tech-icon" data-icon="springboot" title="SpringBoot"></span>
-                        <span class="tech-icon" data-icon="springsecurity" title="SpringSecurity"></span>
-                        <span class="tech-icon" data-icon="mysql" title="MySQL"></span>
-                        <span class="tech-icon" data-icon="postgresql" title="PostgreSQL"></span>
-                        <span class="tech-icon" data-icon="mongodb" title="MongoDB"></span>
-                        <span class="tech-icon" data-icon="hexagonal" title="Arquitectura hexagonal"></span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Proyecto 6 -->
-            <div class="project-card" data-category="java android">
-                <div class="card-bg" style="background-image: url('src/banner/android.png')"></div>
-                <div class="card-content">
-                    <div class="card-header">
-                        <h3 class="project-title">GeneralAndroidApp</h3>
-                        <p class="project-description">App con muchas características aleatorias de Android para explorar diferentes funcionalidades.</p>
-                    </div>
-                    <div class="technologies">
-                        <i class="fab fa-java tech-icon" title="Java"></i>
-                        <i class="fab fa-android tech-icon" title="Android"></i>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Proyecto 7 -->
-            <!-- div class="project-card" data-category="java">
-                <div class="card-bg" style="background-image: url('src/banner/springboot.png')"></div>
-                <div class="card-content">
-                    <div class="card-header">
-                        <h3 class="project-title">SpringBoot_HEX-Tasks <span class="private-badge">Privado</span></h3>
-                        <p class="project-description">Ejercicio básico en SpringBoot aplicando arquitectura hexagonal.</p>
-                    </div>
-                    <div class="technologies">
-                        <i class="fab fa-java tech-icon" title="Java"></i>
-                        <span class="tech-icon" data-icon="springboot" title="SpringBoot"></span>
-                        <span class="tech-icon" data-icon="mysql" title="MySQL"></span>
-                        <span class="tech-icon" data-icon="hexagonal" title="Arquitectura hexagonal"></span>
-                    </div>
-                </div>
-            </div -->
-            
-            <!-- Proyecto 8 -->
-            <div class="project-card" data-category="java">
-                <div class="card-bg" style="background-image: url('src/banner/springboot.png')"></div>
-                <div class="card-content">
-                    <div class="card-header">
-                        <h3 class="project-title">SpringBoot_MTO_MTM_OTM</h3>
-                        <p class="project-description">Ejercicio eventos (Fiestas, personas y habilidades), en relaciones ManyToOne, OneToMany y ManyToMany.</p>
-                    </div>
-                    <div class="technologies">
-                        <i class="fab fa-java tech-icon" title="Java"></i>
-                        <span class="tech-icon" data-icon="springboot"></span>
-                        <span class="tech-icon" data-icon="mysql"></span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Proyecto 9 -->
-            <div class="project-card" data-category="java">
-                <div class="card-bg" style="background-image: url('src/banner/springboot.png')"></div>
-                <div class="card-content">
-                    <div class="card-header">
-                        <h3 class="project-title">SpringBoot_OTO</h3>
-                        <p class="project-description">Ejercicio gimnasio (Instructores y Detalles), en relación unidireccional OneToOne.</p>
-                    </div>
-                    <div class="technologies">
-                        <i class="fab fa-java tech-icon" title="Java"></i>
-                        <span class="tech-icon" data-icon="springboot"></span>
-                        <span class="tech-icon" data-icon="mysql"></span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Proyecto 10 -->
-            <div class="project-card" data-category="java">
-                <div class="card-bg" style="background-image: url('src/banner/springboot.png')"></div>
-                <div class="card-content">
-                    <div class="card-header">
-                        <h3 class="project-title">SpringBoot_MTO</h3>
-                        <p class="project-description">Ejercicio librería (Publicaciones y comentarios), en relación unidireccional ManyToOne.</p>
-                    </div>
-                    <div class="technologies">
-                        <i class="fab fa-java tech-icon" title="Java"></i>
-                        <span class="tech-icon" data-icon="springboot"></span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Proyecto 11 -->
-            <div class="project-card" data-category="java">
-                <div class="card-bg" style="background-image: url('src/banner/springboot.png')"></div>
-                <div class="card-content">
-                    <div class="card-header">
-                        <h3 class="project-title">SpringBoot_MTO_OTM</h3>
-                        <p class="project-description">Ejercicio librería (Librerías y Libros), en relación bidireccional ManyToOne y OneToMany.</p>
-                    </div>
-                    <div class="technologies">
-                        <i class="fab fa-java tech-icon" title="Java"></i>
-                        <span class="tech-icon" data-icon="springboot"></span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Proyecto 12 -->
-            <!-- div class="project-card" data-category="java">
-                <div class="card-bg" style="background-image: url('src/banner/springboot.png')"></div>
-                <div class="card-content">
-                    <div class="card-header">
-                        <h3 class="project-title">SpringSecurity_Basics <span class="private-badge">Privado</span></h3>
-                        <p class="project-description">Ejercicio básico de SpringSecurity.</p>
-                    </div>
-                    <div class="technologies">
-                        <i class="fab fa-java tech-icon" title="Java"></i>
-                        <span class="tech-icon" data-icon="springsecurity"></span>
-                    </div>
-                </div>
-            </div -->
-        
-            <!-- Proyecto 13 -->
-            <div class="project-card" data-category="java">
-                <div class="card-bg" style="background-image: url('src/banner/springboot.png')"></div>
-                <div class="card-content">
-                    <div class="card-header">
-                        <h3 class="project-title">SpringBoot_BasicMicroservice</h3>
-                        <p class="project-description">Ejercicio básico de microservicios en SpringBoot.</p>
-                    </div>
-                    <div class="technologies">
-                        <i class="fab fa-java tech-icon" title="Java"></i>
-                        <span class="tech-icon" data-icon="springboot"></span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Proyecto 14 -->
-            <div class="project-card" data-category="java">
-                <div class="card-bg" style="background-image: url('src/banner/springboot.png')"></div>
-                <div class="card-content">
-                    <div class="card-header">
-                        <h3 class="project-title">SpringBoot_ReactiveREST</h3>
-                        <p class="project-description">Ejercicio REST con Spring WebFlux y MongoDB (Functional Endpoints - Unit Test).</p>
-                    </div>
-                    <div class="technologies">
-                        <i class="fab fa-java tech-icon" title="Java"></i>
-                        <span class="tech-icon" data-icon="springboot"></span>
-                        <span class="tech-icon" data-icon="mongodb"></span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Proyecto 15 -->
-            <!-- div class="project-card" data-category="java">
-                <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1074&q=80')"></div>
-                <div class="card-content">
-                    <div class="card-header">
-                        <h3 class="project-title">SpringBoot_BasicsRestReactive <span class="private-badge">Privado</span></h3>
-                        <p class="project-description">Ejercicios REST básico en Spring WebFlux. Diferenciación entre REST con Anotaciones y Functional Endpoints.</p>
-                    </div>
-                    <div class="technologies">
-                        <i class="fab fa-java tech-icon" title="Java"></i>
-                        <span class="tech-icon" data-icon="springboot"></span>
-                    </div>
-                </div>
-            </div -->
-            
-            <!-- Proyecto 16 -->
-            <!-- div class="project-card" data-category="java">
-                <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1074&q=80')"></div>
-                <div class="card-content">
-                    <div class="card-header">
-                        <h3 class="project-title">SpringBoot_ReactiveBasics <span class="private-badge">Privado</span></h3>
-                        <p class="project-description">Ejercicios básicos en SpringBoot con SpringReactiveWeb.</p>
-                    </div>
-                    <div class="technologies">
-                        <i class="fab fa-java tech-icon" title="Java"></i>
-                        <span class="tech-icon" data-icon="springboot"></span>
-                    </div>
-                </div>
-            </div -->
-            
-            <!-- Proyecto 17 -->
-            <!-- div class="project-card" data-category="javascript">
-                <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1074&q=80')"></div>
-                <div class="card-content">
-                    <div class="card-header">
-                        <h3 class="project-title">projects-ideas-JS <span class="private-badge">Privado</span></h3>
-                        <p class="project-description">Repositorio de ideas y proyectos para desarrollar en JavaScript.</p>
-                    </div>
-                    <div class="technologies">
-                        <i class="fab fa-js-square tech-icon" title="JavaScript"></i>
-                    </div>
-                </div>
-            </div -->
-            
-            <!-- Proyecto 18 -->
-            <!-- div class="project-card" data-category="html">
-                <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1074&q=80')"></div>
-                <div class="card-content">
-                    <div class="card-header">
-                        <h3 class="project-title">primer_extension <span class="private-badge">Privado</span></h3>
-                        <p class="project-description">Mi primera extensión de navegador desarrollada como proyecto de aprendizaje.</p>
-                    </div>
-                    <div class="technologies">
-                        <i class="fab fa-html5 tech-icon" title="HTML"></i>
-                        <i class="fab fa-chrome tech-icon" title="Chrome Extension"></i>
-                    </div>
-                </div>
-            </div -->
-            
-            <!-- Proyecto 19 -->
-            <!-- div class="project-card" data-category="java">
-                <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1074&q=80')"></div>
-                <div class="card-content">
-                    <div class="card-header">
-                        <h3 class="project-title">projects-ideas-JAVA <span class="private-badge">Privado</span></h3>
-                        <p class="project-description">Repositorio de ideas y proyectos para desarrollar en Java.</p>
-                    </div>
-                    <div class="technologies">
-                        <i class="fab fa-java tech-icon" title="Java"></i>
-                    </div>
-                </div>
-            </div -->
-        </div>
+        </section>
     </main>
     
     <footer>
@@ -409,6 +475,76 @@
                     });
                 });
             });
+        });
+
+        // Navegación entre secciones
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('.section');
+            const navToggle = document.querySelector('.nav-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+            const filters = document.getElementById('proyectos-filters');
+
+            // Función para cambiar de sección
+            function changeSection(sectionName) {
+                // Ocultar todas las secciones
+                sections.forEach(section => {
+                    section.classList.remove('active');
+                });
+                
+                // Mostrar la sección seleccionada
+                const activeSection = document.getElementById(sectionName);
+                if (activeSection) {
+                    activeSection.classList.add('active');
+                }
+                
+                // Mostrar/ocultar filtros solo en la sección de proyectos
+                if (filters) {
+                    if (sectionName === 'proyectos') {
+                        filters.style.display = 'flex';
+                    } else {
+                        filters.style.display = 'none';
+                    }
+                }
+                
+                // Actualizar enlaces activos
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('data-section') === sectionName) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            // Event listeners para los enlaces de navegación
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const section = this.getAttribute('data-section');
+                    changeSection(section);
+                    
+                    // Cerrar menú móvil si está abierto
+                    navMenu.classList.remove('active');
+                    navToggle.classList.remove('active');
+                });
+            });
+
+            // Menú móvil toggle
+            navToggle.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+                this.classList.toggle('active');
+            });
+
+            // Cerrar menú al hacer clic fuera de él
+            document.addEventListener('click', function(e) {
+                if (!navToggle.contains(e.target) && !navMenu.contains(e.target)) {
+                    navMenu.classList.remove('active');
+                    navToggle.classList.remove('active');
+                }
+            });
+
+            // Mostrar sección de proyectos por defecto
+            changeSection('proyectos');
         });
     </script>
 </body>
