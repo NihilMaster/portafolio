@@ -86,6 +86,41 @@ document.addEventListener('DOMContentLoaded', function () {
     const navMenu = document.querySelector('.nav-menu');
     const filters = document.getElementById('proyectos-filters');
 
+    // Mapeo de títulos y subtítulos para cada sección
+    const SECTION_CONTENT = {
+        proyectos: {
+            title: 'Portafolio de Proyectos',
+            subtitle: 'Una colección de mis trabajos más relevantes en GitHub'
+        },
+        certificados: {
+            title: 'Certificados y logros',
+            subtitle: 'Certificaciones profesionales, cursos completados y participaciones en eventos'
+        },
+        experiencia: {
+            title: 'Experiencia laboral',
+            subtitle: 'Trayectoria laboral y proyectos profesionales'
+        }
+    };
+
+    // Función para actualizar el encabezado
+    function updateHeader(sectionName) {
+        const title = document.getElementById('header-title');
+        const subtitle = document.getElementById('header-subtitle');
+        
+        if (title && subtitle && SECTION_CONTENT[sectionName]) {
+            // Efecto fade
+            title.classList.add('fade');
+            subtitle.classList.add('fade');
+            
+            setTimeout(() => {
+                title.textContent = SECTION_CONTENT[sectionName].title;
+                subtitle.textContent = SECTION_CONTENT[sectionName].subtitle;
+                title.classList.remove('fade');
+                subtitle.classList.remove('fade');
+            }, 300);
+        }
+    }
+
     // Función para cambiar de sección
     function changeSection(sectionName) {
         // Ocultar todas las secciones
@@ -115,6 +150,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 link.classList.add('active');
             }
         });
+
+        // Actualizar el encabezado
+        updateHeader(sectionName);
     }
 
     // Event listeners para los enlaces de navegación
@@ -146,6 +184,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Mostrar sección de proyectos por defecto
     changeSection('proyectos');
+
+    // Actualizar el encabezado al cargar la página
+    updateHeader('proyectos');
 
     // Cargar certificados al iniciar la página
     loadCertificates();

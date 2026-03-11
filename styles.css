@@ -42,6 +42,12 @@ h1 {
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+    transition: opacity 0.3s ease;
+}
+
+#header-title.fade,
+#header-subtitle.fade {
+    opacity: 0.5;
 }
 
 .subtitle {
