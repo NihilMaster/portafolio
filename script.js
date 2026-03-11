@@ -7,45 +7,53 @@ document.querySelectorAll("[data-icon]").forEach(el => {
 // Cargar certificados desde data/credly.json
 function loadCertificates() {
     const container = document.getElementById('certificates-container');
-
-    fetch('data/credly.json')
+    fetch('data/sources.json')
         .then(response => {
             if (!response.ok) throw new Error('Error al cargar certificados');
             return response.json();
         })
-        .then(certificates => {
+        .then(data => {
+            // Extraer todos los certificados de todas las fuentes
+            let allCertificates = [];
+            
+            data.forEach(source => {
+                // Manejar tanto "credentials" como "repositories"
+                const items = source.credentials || source.repositories || [];
+                allCertificates = allCertificates.concat(items);
+            });
+            
             // Ordenar por fecha (más reciente primero)
-            certificates.sort((a, b) => new Date(b.date) - new Date(a.date));
-
+            allCertificates.sort((a, b) => new Date(b.date) - new Date(a.date));
+            
             // Generar el HTML
-            container.innerHTML = certificates.map(cert => `
-                        <div class="certificate-card">
-                            <div class="card-image">
-                                <img src="${cert.image}" alt="${cert.title}" loading="lazy">
-                            </div>
-                            <div class="card-content">
-                                <h3>${cert.title}</h3>
-                                <p class="issuer">${cert.issuer}</p>
-                                <p class="date">${new Date(cert.date).toLocaleDateString()}</p>
-                                <a href="${cert.credentialUrl}" target="_blank" rel="noopener noreferrer" class="verify-btn">
-                                    <i class="fas fa-external-link-alt"></i> Verificar en Credly
-                                </a>
-                            </div>
-                        </div>
-                    `).join('');
+            container.innerHTML = allCertificates.map(cert => `
+                <div class="certificate-card">
+                    <div class="card-image">
+                        <img src="${cert.image.trim()}" alt="${cert.title}" loading="lazy">
+                    </div>
+                    <div class="card-content">
+                        <h3>${cert.title}</h3>
+                        <p class="issuer">${cert.issuer}</p>
+                        <p class="date">${new Date(cert.date).toLocaleDateString()}</p>
+                        <a href="${cert.credentialUrl.trim()}" target="_blank" rel="noopener noreferrer" class="verify-btn">
+                            <i class="fas fa-external-link-alt"></i> Verificar
+                        </a>
+                    </div>
+                </div>
+            `).join('');
         })
         .catch(error => {
             console.error(error);
             container.innerHTML = `
-                        <div class="certificate-card">
-                            <h3>Certificados en Desarrollo</h3>
-                            <p>Próximamente agregaré mis certificados aquí.</p>
-                            <div class="certificate-placeholder">
-                                <i class="fas fa-certificate fa-3x" style="color: var(--accent); margin: 1rem 0;"></i>
-                                <p>Esta sección estará disponible pronto</p>
-                            </div>
-                        </div>
-                    `;
+                <div class="certificate-card">
+                    <h3>Certificados en Desarrollo</h3>
+                    <p>Próximamente agregaré mis certificados aquí.</p>
+                    <div class="certificate-placeholder">
+                        <i class="fas fa-certificate fa-3x" style="color: var(--accent); margin: 1rem 0;"></i>
+                        <p>Esta sección estará disponible pronto</p>
+                    </div>
+                </div>
+            `;
         });
 }
 
