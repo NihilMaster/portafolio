@@ -14,7 +14,6 @@ function initSvgIcons() {
 // 2. Caché en localStorage para la API de GitHub
 // ==========================================================
 const CACHE_TTL_MS = 60 * 60 * 1000; // 1 hora
-
 async function fetchCached(key, url) {
     const cacheKey = `gh_cache_${key}`;
     try {
@@ -24,11 +23,9 @@ async function fetchCached(key, url) {
             if (Date.now() - ts < CACHE_TTL_MS) return data;
         }
     } catch (e) { /* caché corrupto */ }
-
     const res = await fetch(url, { headers: { 'Accept': 'application/vnd.github+json' } });
     if (!res.ok) throw new Error(`HTTP ${res.status} en ${url}`);
     const data = await res.json();
-
     try { localStorage.setItem(cacheKey, JSON.stringify({ data, ts: Date.now() })); } catch (e) {}
     return data;
 }
@@ -42,9 +39,7 @@ function loadCertificates() {
         console.warn('[certificados] No se encontró #certificates-container');
         return;
     }
-
     console.log('[certificados] Solicitando data/sources.json...');
-
     fetch('data/sources.json')
         .then(response => {
             if (!response.ok) throw new Error(`HTTP ${response.status} al cargar data/sources.json`);
@@ -52,19 +47,15 @@ function loadCertificates() {
         })
         .then(data => {
             console.log('[certificados] Datos recibidos:', data);
-
             let allCertificates = [];
             data.forEach(source => {
                 const items = source.credentials || source.repositories || [];
                 allCertificates = allCertificates.concat(items);
             });
-
             if (!allCertificates.length) {
                 console.warn('[certificados] El JSON no contiene credentials ni repositories.');
             }
-
             allCertificates.sort((a, b) => new Date(b.date) - new Date(a.date));
-
             container.innerHTML = allCertificates.map(cert => `
                 <div class="certificate-card">
                     <div class="card-image">
@@ -102,12 +93,9 @@ function loadCertificates() {
 function initTheme() {
     const themeToggle = document.getElementById('theme-toggle');
     if (!themeToggle) return;
-
     const savedTheme = localStorage.getItem('theme')
         || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-
     document.documentElement.setAttribute('data-theme', savedTheme);
-
     themeToggle.addEventListener('click', () => {
         const current = document.documentElement.getAttribute('data-theme');
         const next = current === 'dark' ? 'light' : 'dark';
@@ -122,14 +110,11 @@ function initTheme() {
 function initFilters() {
     const filterButtons = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-card');
-
     filterButtons.forEach(button => {
         button.addEventListener('click', function () {
             filterButtons.forEach(btn => btn.classList.remove('active'));
             this.classList.add('active');
-
             const filterValue = this.getAttribute('data-filter');
-
             projectCards.forEach(card => {
                 const categories = card.getAttribute('data-category').split(' ');
                 card.style.display = (filterValue === 'all' || categories.includes(filterValue)) ? 'block' : 'none';
@@ -159,11 +144,9 @@ const SECTION_CONTENT = {
 function updateHeader(sectionName) {
     const title = document.getElementById('header-title');
     const subtitle = document.getElementById('header-subtitle');
-
     if (title && subtitle && SECTION_CONTENT[sectionName]) {
         title.classList.add('fade');
         subtitle.classList.add('fade');
-
         setTimeout(() => {
             title.textContent = SECTION_CONTENT[sectionName].title;
             subtitle.textContent = SECTION_CONTENT[sectionName].subtitle;
@@ -175,18 +158,14 @@ function updateHeader(sectionName) {
 
 function changeSection(sectionName) {
     document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
-
     const activeSection = document.getElementById(sectionName);
     if (activeSection) activeSection.classList.add('active');
-
     const filters = document.getElementById('proyectos-filters');
     if (filters) filters.style.display = sectionName === 'proyectos' ? 'flex' : 'none';
-
     document.querySelectorAll('.nav-link').forEach(link => {
         link.classList.remove('active');
         if (link.getAttribute('data-section') === sectionName) link.classList.add('active');
     });
-
     updateHeader(sectionName);
 }
 
@@ -194,7 +173,6 @@ function initNavigation() {
     const navLinks = document.querySelectorAll('.nav-link');
     const navToggle = document.querySelector('.nav-toggle');
     const navMenu = document.querySelector('.nav-menu');
-
     if (!navToggle || !navMenu) return;
 
     navLinks.forEach(link => {
@@ -293,9 +271,7 @@ function initModal() {
             const data = await fetchCached(`readme_${repo}`, `https://api.github.com/repos/${repo}/readme`);
             const decoded = decodeBase64Utf8(data.content || '');
             const html = window.marked ? marked.parse(decoded) : `<pre>${decoded}</pre>`;
-
             readmeContent.innerHTML = html;
-
             const branch = getBranchFromDownloadUrl(data.download_url);
             readmeContent.querySelectorAll('img').forEach(img => {
                 const src = img.getAttribute('src');
@@ -315,32 +291,24 @@ function initModal() {
         const localTitle = card.querySelector('.project-title')?.textContent.trim() || '';
         const localDesc = card.querySelector('.project-description')?.textContent.trim() || '';
         const localTech = card.querySelector('.technologies')?.innerHTML || '';
-
         resetModalState();
-
         modalTitle.textContent = localTitle;
         modalDescription.textContent = localDesc;
         modalTech.innerHTML = localTech;
         modal.dataset.repo = repo || '';
-
         if (repo) {
             modalGithub.href = `https://github.com/${repo}`;
             modalGithub.style.display = 'inline-flex';
         }
-
         openModal();
-
         if (!repo) return;
-
         try {
             const [repoData, langs] = await Promise.all([
                 fetchCached(`repo_${repo}`, `https://api.github.com/repos/${repo}`),
                 fetchCached(`langs_${repo}`, `https://api.github.com/repos/${repo}/languages`).catch(() => ({}))
             ]);
-
             if (repoData?.description) modalDescription.textContent = repoData.description;
             if (repoData?.html_url) modalGithub.href = repoData.html_url;
-
             const totalBytes = Object.values(langs).reduce((a, b) => a + b, 0);
             const langBadges = Object.entries(langs)
                 .sort((a, b) => b[1] - a[1])
@@ -349,9 +317,7 @@ function initModal() {
                     return `<span class="tech-badge">${lang} · ${pct}%</span>`;
                 })
                 .join('');
-
             if (langBadges) modalTech.insertAdjacentHTML('beforeend', langBadges);
-
             if (Array.isArray(repoData?.topics) && repoData.topics.length) {
                 modalTopics.innerHTML = repoData.topics
                     .map(t => `<span class="tech-badge tech-badge-topic">${t}</span>`)
@@ -386,7 +352,6 @@ function initModal() {
         readmeToggle.classList.toggle('active', isOpen);
         readmeToggle.setAttribute('aria-expanded', String(isOpen));
         readmeToggle.querySelector('span').textContent = isOpen ? 'Ocultar README' : 'Mostrar README';
-
         if (isOpen && modal.dataset.readmeLoaded !== 'true' && modal.dataset.repo) {
             await loadReadme(modal.dataset.repo);
             modal.dataset.readmeLoaded = 'true';
@@ -404,4 +369,44 @@ document.addEventListener('DOMContentLoaded', function () {
     try { initFilters(); } catch (e) { console.error('initFilters:', e); }
     try { initModal(); } catch (e) { console.error('initModal:', e); }
     try { loadCertificates(); } catch (e) { console.error('loadCertificates:', e); }
+    try { initFooter(); } catch (e) { console.error('initFooter:', e); }
 });
+
+// ==========================================================
+// 9. Footer: año dinámico y contador de visitas (GoatCounter)
+// ==========================================================
+function initFooter() {
+    const yearEl = document.getElementById('footer-year');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+    const counterEl = document.getElementById('visit-counter');
+    const visitsWrap = document.getElementById('footer-visits');
+    if (!counterEl) return;
+
+    // Ruta exacta tal como la registra GoatCounter (mejor que asumir pathname)
+    let path = location.pathname;
+    try {
+        if (window.goatcounter && typeof window.goatcounter.get_data === 'function') {
+            path = window.goatcounter.get_data()['p'] || path;
+        }
+    } catch (e) { /* seguimos con pathname */ }
+
+    const url = `https://nihil.goatcounter.com/counter/${encodeURIComponent(path)}.json`;
+    fetch(url)
+        .then(res => {
+            if (res.status === 404) {
+                // Aún no existe ni una vista para esta ruta: es lo normal al principio.
+                throw Object.assign(new Error('sin datos todavía (404)'), { silent: true });
+            }
+            if (!res.ok) throw new Error(`HTTP ${res.status} en ${url}`);
+            return res.json();
+        })
+        .then(data => {
+            const clean = String(data.count ?? data.count_unique ?? '0').replace(/[^\d]/g, '');
+            counterEl.textContent = Number(clean || 0).toLocaleString();
+        })
+        .catch(err => {
+            if (!err.silent) console.warn('[footer] No se pudo cargar el contador:', err);
+            counterEl.textContent = '0';
+        });
+}

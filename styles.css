@@ -759,6 +759,41 @@ footer {
     transform: translateY(-3px);
 }
 
+.footer-info {
+    margin: 0;
+}
+
+.footer-visits {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    margin: 0.5rem 0 0;
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--accent) 8%, transparent);
+    font-size: 0.85rem;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.02em;
+    opacity: 0.5;              /* ← aquí está el 50% que pedías */
+    transition: opacity .25s ease;
+}
+
+.footer-visits:hover {
+    opacity: 0.85;             /* sube un poco al pasar por encima */
+}
+
+.footer-visits i {
+    font-size: 0.95rem;
+}
+
+.footer-visits #visit-counter {
+    font-weight: 600;
+    min-width: 1.2ch;
+    display: inline-block;
+    text-align: right;
+}
+
 /* ==========================================================
    Responsive
    ========================================================== */
