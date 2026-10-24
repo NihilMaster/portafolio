@@ -1,36 +1,454 @@
-[
-  {
-    "source": "credly",
-    "credentials": [
-      {
-        "id": 1,
-        "title": "AWS Knowledge: Events and Workflows - Training Badge",
-        "issuer": "Amazon Web Services Training and Certification",
-        "date": "2025-07-30",
-        "image": "https://images.credly.com/images/b6050277-c769-4d17-8c77-3fa963830231/blob",
-        "credentialUrl": "https://www.credly.com/badges/eefcd5b3-f701-4cc2-a762-06d957b38d5e"
-      },
-      {
-        "id": 2,
-        "title": "AWS Knowledge: Cloud Essentials - Training Badge",
-        "issuer": "Amazon Web Services Training and Certification",
-        "date": "2025-07-23",
-        "image": "https://images.credly.com/images/7cf036b0-c609-4378-a7be-9969e1dea7ab/blob",
-        "credentialUrl": "https://www.credly.com/badges/048eb8d0-d104-4df4-91fd-042b709b0439"
-      }
-    ]
-  },
-  {
-    "source": "others",
-    "repositories": [
-      {
-        "id": 3,
-        "title": "SpaceApps",
-        "issuer": "NASA - Reto de la NASA para crear soluciones a problemas relacionados con el espacio.",
-        "date": "2019-10-15",
-        "image": "https://2019.spaceappschallenge.org/assets/d46f5b57/b879064efe1e31f51a35f8af4fd36b17.svg",
-        "credentialUrl": "https://2019.spaceappschallenge.org/challenges/planets-near-and-far/build-planet-workshop/teams/wendspace-1/members/"
-      }
-    ]
-  }
-]
+{
+  "projects": [
+    {
+      "repo": "NihilMaster/SREED",
+      "category": ["python"],
+      "title": "SREED",
+      "description": "Resilient OCR and RAG System for Invoices. A system that extracts and structures invoice data using robust OCR, and enables advanced information queries through a vectorized RAG pipeline.",
+      "banner": null,
+      "technologies": [
+        { "icon": "fa-python", "title": "Python" },
+        { "icon": "ai", "title": "AI" }
+      ],
+      "private": false
+    },
+    {
+      "repo": "NihilMaster/App001MT-Restaurante-club-comercio",
+      "category": ["java"],
+      "title": "App001MT-Restaurante-club-comercio",
+      "description": "App for restaurant order processing and administrative reporting.",
+      "banner": null,
+      "technologies": [
+        { "icon": "fa-java", "title": "Java" }
+      ],
+      "private": true
+    },
+    {
+      "repo": "NihilMaster/RestauranteClubComercio",
+      "category": ["java"],
+      "title": "RestauranteClubComercio",
+      "description": "App for restaurant order processing and administrative reporting.",
+      "banner": null,
+      "technologies": [
+        { "icon": "fa-java", "title": "Java" }
+      ],
+      "private": true
+    },
+    {
+      "repo": "NihilMaster/PruebaMP-WTW",
+      "category": ["csharp"],
+      "title": "PruebaMP-WTW",
+      "description": ".NET",
+      "banner": null,
+      "technologies": [
+        { "icon": "fa-microsoft", "title": "C#" }
+      ],
+      "private": true
+    },
+    {
+      "repo": "NihilMaster/Angular_Path",
+      "category": ["html"],
+      "title": "Angular_Path",
+      "description": "Ejercicios básicos en Angular",
+      "banner": null,
+      "technologies": [
+        { "icon": "fa-angular", "title": "Angular" }
+      ],
+      "private": true
+    },
+    {
+      "repo": "NihilMaster/portafolio",
+      "category": ["html"],
+      "title": "portafolio",
+      "description": null,
+      "banner": null,
+      "technologies": [
+        { "icon": "fa-html5", "title": "HTML" }
+      ],
+      "private": true
+    },
+    {
+      "repo": "NihilMaster/ChatAI-iOS9",
+      "category": ["html"],
+      "title": "chatAI-iOs9",
+      "description": "Aplicación de chat con inteligencia artificial.",
+      "banner": "src/banner/gemini.png",
+      "technologies": [
+        { "icon": "fa-html5", "title": "HTML5" },
+        { "icon": "fa-js-square", "title": "JS - ES5" },
+        { "icon": "fa-github", "title": "GitHub Pages" },
+        { "icon": "render", "title": "render.com" }
+      ],
+      "private": false
+    },
+    {
+      "repo": "NihilMaster/prevalentware-prueba-tecnica-fullstack",
+      "category": ["typescript"],
+      "title": "prevalentware-prueba-tecnica-fullstack",
+      "description": null,
+      "banner": null,
+      "technologies": [
+        { "icon": "fa-js-square", "title": "TypeScript" }
+      ],
+      "private": true
+    },
+    {
+      "repo": "NihilMaster/MeloBotExtension",
+      "category": ["javascript", "extension"],
+      "title": "MeloBotExtension",
+      "description": "Extensión de navegador que analiza en tiempo real el contenido de campos de texto usando IA para detectar lenguaje ofensivo y promover una comunicación digital más respetuosa.",
+      "banner": "src/banner/chomelo_mintic.png",
+      "technologies": [
+        { "icon": "fa-js-square", "title": "JavaScript" },
+        { "icon": "fa-chrome", "title": "Chrome Extension" }
+      ],
+      "private": false
+    },
+    {
+      "repo": "NihilMaster/notifier-telegram-bot",
+      "category": ["javascript"],
+      "title": "notifier-telegram-bot",
+      "description": "Bot de Telegram para notificaciones automáticas.",
+      "banner": "src/banner/telegram.png",
+      "technologies": [
+        { "icon": "fa-js-square", "title": "JavaScript" },
+        { "icon": "fa-telegram", "title": "Telegram" }
+      ],
+      "private": false
+    },
+    {
+      "repo": "NihilMaster/TreeMakerExtension",
+      "category": ["javascript", "extension"],
+      "title": "TreeMakerExtension",
+      "description": "Extensión para crear árboles de directorios y estructuras de archivos.",
+      "banner": "src/banner/tree.png",
+      "technologies": [
+        { "icon": "fa-js-square", "title": "JavaScript" },
+        { "icon": "fa-chrome", "title": "Chrome Extension" }
+      ],
+      "private": false
+    },
+    {
+      "repo": "NihilMaster/GeneralAndroidApp",
+      "category": ["java", "android"],
+      "title": "GeneralAndroidApp",
+      "description": "App con muchas características aleatorias de Android para explorar diferentes funcionalidades.",
+      "banner": "src/banner/android.png",
+      "technologies": [
+        { "icon": "fa-java", "title": "Java" },
+        { "icon": "fa-android", "title": "Android" }
+      ],
+      "private": false
+    },
+    {
+      "repo": "NihilMaster/SpringBoot_AdvancedMicroservice",
+      "category": ["java"],
+      "title": "SpringBoot_AdvancedMicroservice",
+      "description": "Microservicio reactivo en SpringBoot utilizando arquitectura hexagonal (+SpringSecurity +SpringTesting).",
+      "banner": "src/banner/springboot.png",
+      "technologies": [
+        { "icon": "fa-java", "title": "Java" },
+        { "icon": "springboot", "title": "SpringBoot" },
+        { "icon": "springsecurity", "title": "SpringSecurity" },
+        { "icon": "mysql", "title": "MySQL" },
+        { "icon": "postgresql", "title": "PostgreSQL" },
+        { "icon": "mongodb", "title": "MongoDB" },
+        { "icon": "hexagonal", "title": "Arquitectura hexagonal" }
+      ],
+      "private": false
+    },
+    {
+      "repo": "NihilMaster/SpringBoot_MTO_MTM_OTM",
+      "category": ["java"],
+      "title": "SpringBoot_MTO_MTM_OTM",
+      "description": "Ejercicio eventos (Fiestas, personas y habilidades), en relaciones ManyToOne, OneToMany y ManyToMany.",
+      "banner": "src/banner/springboot.png",
+      "technologies": [
+        { "icon": "fa-java", "title": "Java" },
+        { "icon": "springboot", "title": "SpringBoot" },
+        { "icon": "mysql", "title": "MySQL" }
+      ],
+      "private": false
+    },
+    {
+      "repo": "NihilMaster/SpringBoot_MTO",
+      "category": ["java"],
+      "title": "SpringBoot_MTO",
+      "description": "Ejercicio librería (Publicaciones y comentarios), en relación unidireccional ManyToOne.",
+      "banner": "src/banner/springboot.png",
+      "technologies": [
+        { "icon": "fa-java", "title": "Java" },
+        { "icon": "springboot", "title": "SpringBoot" }
+      ],
+      "private": false
+    },
+    {
+      "repo": "NihilMaster/SpringBoot_MTO_OTM",
+      "category": ["java"],
+      "title": "SpringBoot_MTO_OTM",
+      "description": "Ejercicio librería (Librerías y Libros), en relación bidireccional ManyToOne y OneToMany.",
+      "banner": "src/banner/springboot.png",
+      "technologies": [
+        { "icon": "fa-java", "title": "Java" },
+        { "icon": "springboot", "title": "SpringBoot" }
+      ],
+      "private": false
+    },
+    {
+      "repo": "NihilMaster/SpringBoot_BasicMicroservice",
+      "category": ["java"],
+      "title": "SpringBoot_BasicMicroservice",
+      "description": "Ejercicio básico de microservicios en SpringBoot.",
+      "banner": "src/banner/springboot.png",
+      "technologies": [
+        { "icon": "fa-java", "title": "Java" },
+        { "icon": "springboot", "title": "SpringBoot" }
+      ],
+      "private": false
+    },
+    {
+      "repo": "NihilMaster/SpringBoot_ReactiveREST",
+      "category": ["java"],
+      "title": "SpringBoot_ReactiveREST",
+      "description": "Ejercicio REST con Spring WebFlux y MongoDB (Functional Endpoints - Unit Test).",
+      "banner": "src/banner/springboot.png",
+      "technologies": [
+        { "icon": "fa-java", "title": "Java" },
+        { "icon": "springboot", "title": "SpringBoot" },
+        { "icon": "mongodb", "title": "MongoDB" }
+      ],
+      "private": false
+    },
+    {
+      "repo": "NihilMaster/dip_m1_final",
+      "category": ["javascript"],
+      "title": "dip_m1_final",
+      "description": "Proyecto Final - Módulo 2 - Diplomado",
+      "banner": null,
+      "technologies": [
+        { "icon": "fa-js-square", "title": "JavaScript" }
+      ],
+      "private": true
+    },
+    {
+      "repo": "NihilMaster/SpringBoot_HEX-Tasks",
+      "category": ["java"],
+      "title": "SpringBoot_HEX-Tasks",
+      "description": "Ejercicio básico en SpringBoot aplicando arquitectura hexagonal.",
+      "banner": "src/banner/springboot.png",
+      "technologies": [
+        { "icon": "fa-java", "title": "Java" },
+        { "icon": "springboot", "title": "SpringBoot" },
+        { "icon": "mysql", "title": "MySQL" },
+        { "icon": "hexagonal", "title": "Arquitectura hexagonal" }
+      ],
+      "private": true
+    },
+    {
+      "repo": "NihilMaster/SpringSecurity_Basics",
+      "category": ["java"],
+      "title": "SpringSecurity_Basics",
+      "description": "Ejercicio básico de SpringSecurity.",
+      "banner": "src/banner/springboot.png",
+      "technologies": [
+        { "icon": "fa-java", "title": "Java" },
+        { "icon": "springsecurity", "title": "SpringSecurity" }
+      ],
+      "private": true
+    },
+    {
+      "repo": "NihilMaster/SpringBoot_BasicsRestReactive",
+      "category": ["java"],
+      "title": "SpringBoot_BasicsRestReactive",
+      "description": "Ejercicios REST básico en Spring WebFlux. Diferenciación entre REST con Anotaciones y Functional Endpoints.",
+      "banner": "src/banner/springboot.png",
+      "technologies": [
+        { "icon": "fa-java", "title": "Java" },
+        { "icon": "springboot", "title": "SpringBoot" }
+      ],
+      "private": true
+    },
+    {
+      "repo": "NihilMaster/SpringBoot_ReactiveBasics",
+      "category": ["java"],
+      "title": "SpringBoot_ReactiveBasics",
+      "description": "Ejercicios básicos en SpringBoot con SpringReactiveWeb.",
+      "banner": "src/banner/springboot.png",
+      "technologies": [
+        { "icon": "fa-java", "title": "Java" },
+        { "icon": "springboot", "title": "SpringBoot" }
+      ],
+      "private": true
+    },
+    {
+      "repo": "NihilMaster/projects-ideas-JS",
+      "category": ["javascript"],
+      "title": "projects-ideas-JS",
+      "description": "Repositorio de ideas y proyectos para desarrollar en JavaScript.",
+      "banner": "src/banner/springboot.png",
+      "technologies": [{ "icon": "fa-js-square", "title": "JavaScript" }],
+      "private": true
+    },
+    {
+      "repo": "NihilMaster/primer_extension",
+      "category": ["html"],
+      "title": "primer_extension",
+      "description": "Mi primera extensión de navegador desarrollada como proyecto de aprendizaje.",
+      "banner": "src/banner/springboot.png",
+      "technologies": [
+        { "icon": "fa-html5", "title": "HTML" },
+        { "icon": "fa-chrome", "title": "Chrome Extension" }
+      ],
+      "private": true
+    },
+    {
+      "repo": "NihilMaster/projects-ideas-JAVA",
+      "category": ["java"],
+      "title": "projects-ideas-JAVA",
+      "description": "Repositorio de ideas y proyectos para desarrollar en Java.",
+      "banner": "src/banner/springboot.png",
+      "technologies": [{ "icon": "fa-java", "title": "Java" }],
+      "private": true
+    }
+  ],
+  "certificates": [
+    {
+      "id": 1,
+      "title": "AWS Knowledge: Events and Workflows - Training Badge",
+      "issuer": "Amazon Web Services Training and Certification",
+      "date": "2025-07-30",
+      "image": "https://images.credly.com/images/b6050277-c769-4d17-8c77-3fa963830231/blob",
+      "credentialUrl": "https://www.credly.com/badges/eefcd5b3-f701-4cc2-a762-06d957b38d5e"
+    },
+    {
+      "id": 2,
+      "title": "AWS Knowledge: Cloud Essentials - Training Badge",
+      "issuer": "Amazon Web Services Training and Certification",
+      "date": "2025-07-23",
+      "image": "https://images.credly.com/images/7cf036b0-c609-4378-a7be-9969e1dea7ab/blob",
+      "credentialUrl": "https://www.credly.com/badges/048eb8d0-d104-4df4-91fd-042b709b0439"
+    },
+    {
+      "id": 3,
+      "title": "SpaceApps",
+      "issuer": "NASA - Reto de la NASA para crear soluciones a problemas relacionados con el espacio.",
+      "date": "2019-10-15",
+      "image": "https://2019.spaceappschallenge.org/assets/d46f5b57/b879064efe1e31f51a35f8af4fd36b17.svg",
+      "credentialUrl": "https://2019.spaceappschallenge.org/challenges/planets-near-and-far/build-planet-workshop/teams/wendspace-1/members/"
+    }
+  ],
+  "experience": [
+    {
+      "title": "Desarrollador fullstack",
+      "company": "Michael Page (Willis Towards Watson)",
+      "location": "Colombia",
+      "start": "2026-01",
+      "end": null,
+      "description": "Lideré el desarrollo y la optimización de middleware de integración en .NET 8.0 y SQL Server, asumiendo responsabilidad principal en módulos de cotización y emisión de pólizas para el sector asegurador y bancario en LATAM. Construí APIs REST (JSON) y SOAP (XML), refactoricé integraciones existentes para consumo bidireccional de servicios, garanticé almacenamiento y manejo seguro de credenciales de autenticación, validé interoperabilidad con Postman y co-gestioné infraestructura de red con políticas de conectividad, asignación de puertos y whitelisting de IPs.",
+      "technologies": [
+        ".NET 8",
+        "SQL Server",
+        "REST (JSON)",
+        "SOAP (XML)",
+        "Postman"
+      ],
+      "achievements": [
+        "Lideré el desarrollo y la optimización de middleware de integración en .NET 8.0 y SQL Server",
+        "Asumí responsabilidad principal en los módulos de cotización y emisión de pólizas para el sector asegurador y bancario en LATAM (Argentina, México, Brasil y Honduras)",
+        "Construí nuevas APIs en protocolos REST (JSON) y SOAP (XML)",
+        "Refactoricé integraciones existentes para el consumo bidireccional de servicios",
+        "Garanticé el almacenamiento y manejo seguro de credenciales de autenticación bajo estándares de protección de datos sensibles",
+        "Validé la interoperabilidad de servicios mediante Postman",
+        "Co-gestioné la infraestructura de red, configurando políticas de conectividad, asignación de puertos y whitelisting de IPs para conexiones cross-border de alta disponibilidad"
+      ],
+      "private": false
+    },
+    {
+      "title": "Desarrollador fullstack",
+      "company": "Ministerio de Cultura",
+      "location": "Colombia",
+      "start": "2024-09",
+      "end": "2025-12",
+      "description": "Lideré la finalización de dos versiones de una plataforma de registro audiovisual, logrando la coexistencia técnica entre sistemas legados en .NET Framework 4.5 y arquitecturas modernas en .NET 8 con Angular 17/19. Bajo arquitectura hexagonal, optimicé flujos de clasificación y votación, resolví deuda técnica de módulos desalineados y potencié la capa de datos en SQL Server con procedimientos y JSON, validando interoperabilidad REST/SOAP y gestionando despliegues en Azure DevOps.",
+      "technologies": [
+        ".NET Framework 4.5",
+        ".NET 8",
+        "Angular 17/19",
+        "Arquitectura Hexagonal",
+        "SQL Server",
+        "REST",
+        "SOAP",
+        "Postman",
+        "Swagger",
+        "Azure DevOps"
+      ],
+      "achievements": [
+        "Lideré la finalización de dos versiones de una plataforma de registro audiovisual",
+        "Logré la coexistencia técnica entre sistemas legados en .NET Framework 4.5 y arquitecturas modernas en .NET 8 con Angular 17/19",
+        "Optimicé flujos de clasificación y votación",
+        "Resolví deuda técnica de módulos desalineados para asegurar su integración",
+        "Potencié la capa de datos en SQL Server con procedimientos y JSON",
+        "Validé la interoperabilidad de servicios REST/SOAP mediante Postman/Swagger",
+        "Gestioné despliegues en Azure DevOps"
+      ],
+      "private": false
+    },
+    {
+      "title": "Cloud Developer",
+      "company": "VCSoft (Bancolombia)",
+      "location": "Colombia",
+      "start": "2022-08",
+      "end": "2023-05",
+      "description": "Desarrollo y optimización de microservicios de alta criticidad bajo programación reactiva y Spring Boot, implementación de arquitectura hexagonal, gestión de infraestructura en AWS y fortalecimiento de seguridad mediante resolución de vulnerabilidades en FluidAttacks dentro de un flujo Agile (Scrum) en Azure DevOps.",
+      "technologies": [
+        "Spring Boot",
+        "Programación Reactiva",
+        "Arquitectura Hexagonal",
+        "AWS",
+        "Azure DevOps",
+        "Scrum",
+        "FluidAttacks"
+      ],
+      "achievements": [
+        "Lideré el desarrollo y optimización de microservicios de alta criticidad",
+        "Garanticé soluciones de baja latencia y alta escalabilidad",
+        "Implementé arquitectura hexagonal para asegurar la mantenibilidad del software",
+        "Gestioné infraestructura en el ecosistema AWS",
+        "Fortalecí la seguridad de las aplicaciones mediante gestión y resolución de vulnerabilidades en FluidAttacks"
+      ],
+      "private": false
+    },
+    {
+      "title": "Desarrollador fullstack",
+      "company": "Freelancer",
+      "location": "Colombia",
+      "start": "2021-12",
+      "end": "2022-06",
+      "description": "Desarrollo full stack de plataforma e-commerce para gestión de pedidos, pagos e inventarios con Django y React; conceptualización y desarrollo de aplicación web para asociación veterinaria orientada a optimizar canales de comunicación y distribución de información estratégica.",
+      "technologies": ["Django", "React"],
+      "achievements": [
+        "Diseño y ejecución de solución integral para gestión de pedidos, pagos e inventarios",
+        "Desarrollo de interfaz de usuario dinámica y responsiva con React",
+        "Conceptualización y desarrollo de aplicación web para asociación veterinaria",
+        "Optimización de canales de comunicación y distribución de información estratégica"
+      ],
+      "private": false
+    },
+    {
+      "title": "Desarrollador junior",
+      "company": "Kommit",
+      "location": "Colombia",
+      "start": "2021-05",
+      "end": "2021-10",
+      "description": "Desarrollo Ruby on Rails para clientes estadounidenses, implementación de CRUDs y validación técnica de endpoints mediante Postman, con control de versiones en Git y gestión de tickets y reportes de avance en inglés.",
+      "technologies": ["Ruby on Rails", "Postman", "Git"],
+      "achievements": [
+        "Implementación de CRUDs para clientes estadounidenses",
+        "Validación técnica de endpoints mediante Postman",
+        "Garantía de calidad de entregas mediante control de versiones con Git",
+        "Gestión de tickets y reportes de avance íntegramente en inglés"
+      ],
+      "private": false
+    }
+  ]
+}

@@ -1,8 +1,31 @@
 // ==========================================================
-// 1. Carga de iconos SVG en elementos [data-icon]
+// 1. Utilidades
 // ==========================================================
-function initSvgIcons() {
-    document.querySelectorAll("[data-icon]").forEach(el => {
+function formatYearMonth(ym) {
+    if (!ym) return '';
+    if (ym === 'present' || ym === null) return 'Actualidad';
+    const [year, month] = String(ym).split('-');
+    const months = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun',
+                    'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+    const m = months[Number(month) - 1] || month;
+    return `${m} ${year}`;
+}
+
+function escapeHtml(str) {
+    if (str == null) return '';
+    return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+}
+
+// ==========================================================
+// 2. Carga de iconos SVG en elementos [data-icon]
+// ==========================================================
+function initSvgIcons(root = document) {
+    root.querySelectorAll("[data-icon]").forEach(el => {
         const key = el.getAttribute("data-icon");
         if (window.SVG_ICONS && window.SVG_ICONS[key]) {
             el.innerHTML = window.SVG_ICONS[key];
@@ -11,7 +34,7 @@ function initSvgIcons() {
 }
 
 // ==========================================================
-// 2. Caché en localStorage para la API de GitHub
+// 3. Caché en localStorage para la API de GitHub
 // ==========================================================
 const CACHE_TTL_MS = 60 * 60 * 1000; // 1 hora
 async function fetchCached(key, url) {
@@ -31,7 +54,72 @@ async function fetchCached(key, url) {
 }
 
 // ==========================================================
-// 3. Certificados — carga desde data/sources.json
+// 4. Carga unificada: data/sources.json (memorizado)
+// ==========================================================
+let SOURCES_DATA = null;
+async function loadSources() {
+    if (SOURCES_DATA) return SOURCES_DATA;
+    const res = await fetch('data/sources.json');
+    if (!res.ok) throw new Error(`HTTP ${res.status} al cargar data/sources.json`);
+    SOURCES_DATA = await res.json();
+    return SOURCES_DATA;
+}
+
+// ==========================================================
+// 5. Proyectos
+// ==========================================================
+function renderTechnology(tech) {
+    const isFA = tech.icon.startsWith('fa-');
+    const title = escapeHtml(tech.title);
+    if (isFA) {
+        return `<i class="fab ${tech.icon} tech-icon" title="${title}"></i>`;
+    }
+    return `<span class="tech-icon" data-icon="${escapeHtml(tech.icon)}" title="${title}"></span>`;
+}
+
+function loadProjects() {
+    const container = document.getElementById('projects-container');
+    if (!container) {
+        console.warn('[proyectos] No se encontró #projects-container');
+        return;
+    }
+    loadSources()
+        .then(data => {
+            const projects = (data.projects || []).filter(p => !p.private);
+            if (!projects.length) {
+                container.innerHTML = '<p>No hay proyectos para mostrar.</p>';
+                return;
+            }
+            container.innerHTML = projects.map(p => `
+                <div class="project-card" data-category="${p.category.map(escapeHtml).join(' ')}" data-repo="${escapeHtml(p.repo)}" role="button" tabindex="0">
+                    <div class="card-bg" style="background-image: url('${p.banner}')"></div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h3 class="project-title">${escapeHtml(p.title)}</h3>
+                            <p class="project-description">${escapeHtml(p.description)}</p>
+                        </div>
+                        <div class="technologies">
+                            ${p.technologies.map(renderTechnology).join('')}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            initSvgIcons(container);
+            initFilters();
+        })
+        .catch(err => {
+            console.error('[proyectos] Error:', err);
+            container.innerHTML = `
+                <div class="certificate-card">
+                    <h3>Proyectos en desarrollo</h3>
+                    <p>Próximamente agregaré mis proyectos aquí.</p>
+                </div>
+            `;
+        });
+}
+
+// ==========================================================
+// 6. Certificados
 // ==========================================================
 function loadCertificates() {
     const container = document.getElementById('certificates-container');
@@ -39,31 +127,22 @@ function loadCertificates() {
         console.warn('[certificados] No se encontró #certificates-container');
         return;
     }
-    console.log('[certificados] Solicitando data/sources.json...');
-    fetch('data/sources.json')
-        .then(response => {
-            if (!response.ok) throw new Error(`HTTP ${response.status} al cargar data/sources.json`);
-            return response.json();
-        })
+    loadSources()
         .then(data => {
-            console.log('[certificados] Datos recibidos:', data);
-            let allCertificates = [];
-            data.forEach(source => {
-                const items = source.credentials || source.repositories || [];
-                allCertificates = allCertificates.concat(items);
-            });
-            if (!allCertificates.length) {
-                console.warn('[certificados] El JSON no contiene credentials ni repositories.');
+            const certs = data.certificates || [];
+            if (!certs.length) {
+                container.innerHTML = '<p>No hay certificados para mostrar.</p>';
+                return;
             }
-            allCertificates.sort((a, b) => new Date(b.date) - new Date(a.date));
-            container.innerHTML = allCertificates.map(cert => `
+            const sorted = [...certs].sort((a, b) => new Date(b.date) - new Date(a.date));
+            container.innerHTML = sorted.map(cert => `
                 <div class="certificate-card">
                     <div class="card-image">
-                        <img src="${(cert.image || '').trim()}" alt="${cert.title}" loading="lazy">
+                        <img src="${(cert.image || '').trim()}" alt="${escapeHtml(cert.title)}" loading="lazy">
                     </div>
                     <div class="card-content">
-                        <h3>${cert.title}</h3>
-                        <p class="issuer">${cert.issuer}</p>
+                        <h3>${escapeHtml(cert.title)}</h3>
+                        <p class="issuer">${escapeHtml(cert.issuer)}</p>
                         <p class="date">${new Date(cert.date).toLocaleDateString()}</p>
                         <a href="${(cert.credentialUrl || '').trim()}" target="_blank" rel="noopener noreferrer" class="verify-btn">
                             <i class="fas fa-external-link-alt"></i> Verificar
@@ -72,23 +151,76 @@ function loadCertificates() {
                 </div>
             `).join('');
         })
-        .catch(error => {
-            console.error('[certificados] Error:', error);
+        .catch(err => {
+            console.error('[certificados] Error:', err);
             container.innerHTML = `
                 <div class="certificate-card">
                     <h3>Certificados en Desarrollo</h3>
                     <p>Próximamente agregaré mis certificados aquí.</p>
-                    <div class="certificate-placeholder">
-                        <i class="fas fa-certificate fa-3x" style="color: var(--accent); margin: 1rem 0;"></i>
-                        <p>Esta sección estará disponible pronto</p>
-                    </div>
                 </div>
             `;
         });
 }
 
 // ==========================================================
-// 4. Toggle de tema (claro / oscuro)
+// 7. Experiencia
+// ==========================================================
+function loadExperience() {
+    const container = document.getElementById('experience-card');
+    if (!container) {
+        console.warn('[experiencia] No se encontró #experience-card');
+        return;
+    }
+    loadSources()
+        .then(data => {
+            const experience = (data.experience || []).filter(e => !e.private);
+            if (!experience.length) {
+                container.innerHTML = `
+                    <div class="experience-card empty">
+                        <h3>Mi Experiencia Profesional</h3>
+                        <p>Próximamente compartiré mi experiencia laboral y profesional.</p>
+                    </div>
+                `;
+                return;
+            }
+            container.innerHTML = experience.map(exp => `
+                <div class="experience-card">
+                    <div class="exp-header">
+                        <h3>${escapeHtml(exp.title)}</h3>
+                        <span class="exp-period">
+                            ${formatYearMonth(exp.start)} — ${exp.end === null || exp.end === undefined ? 'Actualidad' : formatYearMonth(exp.end)}
+                        </span>
+                    </div>
+                    <p class="company">
+                        ${escapeHtml(exp.company)}${exp.location ? ` · <span class="location">${escapeHtml(exp.location)}</span>` : ''}
+                    </p>
+                    <p class="description">${escapeHtml(exp.description)}</p>
+                    ${(exp.technologies || []).length ? `
+                        <div class="technologies">
+                            ${exp.technologies.map(t => `<span class="tech-badge">${escapeHtml(t)}</span>`).join('')}
+                        </div>
+                    ` : ''}
+                    ${(exp.achievements || []).length ? `
+                        <ul class="achievements">
+                            ${exp.achievements.map(a => `<li>${escapeHtml(a)}</li>`).join('')}
+                        </ul>
+                    ` : ''}
+                </div>
+            `).join('');
+        })
+        .catch(err => {
+            console.error('[experiencia] Error:', err);
+            container.innerHTML = `
+                <div class="experience-card empty">
+                    <h3>Experiencia en Desarrollo</h3>
+                    <p>Próximamente agregaré mi experiencia aquí.</p>
+                </div>
+            `;
+        });
+}
+
+// ==========================================================
+// 8. Toggle de tema
 // ==========================================================
 function initTheme() {
     const themeToggle = document.getElementById('theme-toggle');
@@ -105,7 +237,7 @@ function initTheme() {
 }
 
 // ==========================================================
-// 5. Filtrado de proyectos
+// 9. Filtrado de proyectos
 // ==========================================================
 function initFilters() {
     const filterButtons = document.querySelectorAll('.filter-btn');
@@ -124,7 +256,7 @@ function initFilters() {
 }
 
 // ==========================================================
-// 6. Navegación entre secciones
+// 10. Navegación entre secciones
 // ==========================================================
 const SECTION_CONTENT = {
     proyectos: {
@@ -202,7 +334,7 @@ function initNavigation() {
 }
 
 // ==========================================================
-// 7. Modal de proyecto + GitHub API
+// 11. Modal de proyecto + GitHub API (EVENT DELEGATION)
 // ==========================================================
 function initModal() {
     const modal = document.getElementById('project-modal');
@@ -330,23 +462,24 @@ function initModal() {
         }
     }
 
-    // Listeners
-    document.querySelectorAll('.project-card').forEach(card => {
-        card.addEventListener('click', () => openProjectModal(card));
-        card.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                openProjectModal(card);
-            }
-        });
+    // Event delegation
+    document.addEventListener('click', (e) => {
+        const card = e.target.closest('.project-card');
+        if (card) openProjectModal(card);
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key !== 'Enter' && e.key !== ' ') return;
+        const card = e.target.closest('.project-card');
+        if (card) {
+            e.preventDefault();
+            openProjectModal(card);
+        }
     });
 
     modal.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', closeModal));
-
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
     });
-
     readmeToggle.addEventListener('click', async () => {
         const isOpen = readmeContent.classList.toggle('open');
         readmeToggle.classList.toggle('active', isOpen);
@@ -360,42 +493,19 @@ function initModal() {
 }
 
 // ==========================================================
-// 8. Arranque
-// ==========================================================
-document.addEventListener('DOMContentLoaded', function () {
-    try { initSvgIcons(); } catch (e) { console.error('initSvgIcons:', e); }
-    try { initTheme(); } catch (e) { console.error('initTheme:', e); }
-    try { initNavigation(); } catch (e) { console.error('initNavigation:', e); }
-    try { initFilters(); } catch (e) { console.error('initFilters:', e); }
-    try { initModal(); } catch (e) { console.error('initModal:', e); }
-    try { loadCertificates(); } catch (e) { console.error('loadCertificates:', e); }
-    try { initFooter(); } catch (e) { console.error('initFooter:', e); }
-});
-
-// ==========================================================
-// 9. Footer: año dinámico y contador de visitas (GoatCounter)
+// 12. Footer: año dinámico y contador de visitas (GoatCounter)
 // ==========================================================
 function initFooter() {
     const yearEl = document.getElementById('footer-year');
     if (yearEl) yearEl.textContent = new Date().getFullYear();
 
     const counterEl = document.getElementById('visit-counter');
-    const visitsWrap = document.getElementById('footer-visits');
     if (!counterEl) return;
 
-    // Ruta exacta tal como la registra GoatCounter (mejor que asumir pathname)
-    let path = location.pathname;
-    try {
-        if (window.goatcounter && typeof window.goatcounter.get_data === 'function') {
-            path = window.goatcounter.get_data()['p'] || path;
-        }
-    } catch (e) { /* seguimos con pathname */ }
-
-    const url = `https://nihil.goatcounter.com/counter/${encodeURIComponent(path)}.json`;
+    const url = 'https://nihil.goatcounter.com/counter/TOTAL.json';
     fetch(url)
         .then(res => {
             if (res.status === 404) {
-                // Aún no existe ni una vista para esta ruta: es lo normal al principio.
                 throw Object.assign(new Error('sin datos todavía (404)'), { silent: true });
             }
             if (!res.ok) throw new Error(`HTTP ${res.status} en ${url}`);
@@ -410,3 +520,16 @@ function initFooter() {
             counterEl.textContent = '0';
         });
 }
+
+// ==========================================================
+// 13. Arranque
+// ==========================================================
+document.addEventListener('DOMContentLoaded', function () {
+    try { initTheme(); } catch (e) { console.error('initTheme:', e); }
+    try { initNavigation(); } catch (e) { console.error('initNavigation:', e); }
+    try { initModal(); } catch (e) { console.error('initModal:', e); }
+    try { loadProjects(); } catch (e) { console.error('loadProjects:', e); }
+    try { loadCertificates(); } catch (e) { console.error('loadCertificates:', e); }
+    try { loadExperience(); } catch (e) { console.error('loadExperience:', e); }
+    try { initFooter(); } catch (e) { console.error('initFooter:', e); }
+});
